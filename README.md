@@ -1,74 +1,81 @@
-# 🔒 Vulnerability Assessment Lab – Hands-on with OpenVAS, Metasploit & Metasploitable2
+# 🔍 Vulnerability Assessment Lab
 
-"Hands-on Vulnerability Assessment and Exploitation Lab using OpenVAS, Metasploit, and Metasploitable2. Ethical hacking practice and exploitation notes."
+**Hands-on Vulnerability Assessment using OpenVAS, Metasploit, and Metasploitable2**
+
+This lab documents real exploitation of legacy services using ethical hacking techniques.
 
 ---
 
 ## 📚 Table of Contents
-- [Tools Used](#tools-used)
+- [Overview](#overview)
 - [Objectives](#objectives)
+- [Tools Used](#tools-used)
 - [Explored Vulnerabilities](#explored-vulnerabilities)
-- [Next Targets](#next-targets)
-- [References](#references)
+- [Screenshots](#screenshots)
+- [How to Reproduce](#how-to-reproduce)
+- [Resources](#resources)
 
 ---
 
-## 🛠️ Tools Used
-
-- **OpenVAS** (Greenbone Vulnerability Manager)
-- **Metasploit Framework**
-- **Metasploitable2 VM**
-- **Nmap**, `netcat`, and other terminal tools
+## 🧠 Overview
+This repository is a personal learning project where I explore vulnerable services on Metasploitable2 using OpenVAS and Metasploit.
 
 ---
 
 ## 🎯 Objectives
-
-- Identify vulnerable ports and services using OpenVAS
-- Exploit legacy protocols like `rlogin`, `rexec`, and `ingreslock`
-- Learn vulnerability report writing
-- Improve practical ethical hacking & cybersecurity skills
+- Identify open ports and weak services
+- Exploit insecure protocols (`rlogin`, `rexec`, `ingreslock`)
+- Document security findings and exploit steps
+- Practice ethical hacking techniques
 
 ---
 
-## 🧪 Explored Vulnerabilities
+## 🛠️ Tools Used
+- OpenVAS / GVM (for scanning vulnerabilities)
+- Metasploit Framework (for exploitation)
+- Nmap (for service enumeration)
+- VirtualBox (for hosting VMs)
+- Kali Linux (attacker machine)
+- Metasploitable2 (target machine)
+
+---
+
+## 💥 Explored Vulnerabilities
 
 ### 1. `rlogin` (Port 513)
-- **Type**: Remote Login Service
-- **Issue**: Passwordless `root` login allowed
-- **Impact**: Full shell access as root
-- **Status**: ✅ Successfully exploited
+- Weak authentication
+- Gained root access without password (trust-based access)
 
 ### 2. `rexec` (Port 512)
-- **Type**: Remote Execution Protocol
-- **Issue**: Remote command execution without strong authentication
-- **Tool Used**: OpenVAS & Metasploit (`rexec_login` scanner)
-- **Status**: ⚠️ Exploitation attempted, further testing needed
+- Remote command execution
+- Discovered via OpenVAS, tested using Metasploit
 
 ### 3. `ingreslock` (Port 1524)
-- **Type**: Backdoor (root shell)
-- **Issue**: Grants direct root shell without credentials
-- **Command Used**: `nc <target-ip> 1524`
-- **Status**: ✅ Exploited successfully (root access confirmed)
+- Backdoor shell from old `inetd` configuration
+- Investigated for post-exploitation
 
 ---
 
-## 🚀 Next Targets (Coming Soon)
-
-- Apache Tomcat (Port 8009) - Investigating AJP vulnerability
-- FTP Anonymous Login - Test default misconfigurations
-- Samba Shares - Check for `null` session or write access
-- Telnet Access - Legacy protocol scan
+## 🖼️ Screenshots
+(Coming Soon)
 
 ---
 
-## 📚 References
-
-- [OpenVAS Documentation](https://greenbone.net/documentation/)
-- [Metasploit Modules Reference](https://docs.rapid7.com/metasploit/)
-- [Metasploitable2 Info](https://docs.rapid7.com/metasploit/metasploitable-2/)
-- `man` pages: `nc`, `nmap`, `whois`, `netstat`
+## 🧪 How to Reproduce
+1. Set up Kali Linux and Metasploitable2 in VirtualBox
+2. Ensure both VMs are on Host-Only or Bridged network
+3. Run `nmap -sV <target-ip>` to find open services
+4. Scan with OpenVAS
+5. Exploit vulnerabilities using Metasploit
 
 ---
 
-> 🧠 _Note_: All activities were performed in an isolated virtual lab for ethical research and learning purposes only.
+## 📘 Resources
+- [OpenVAS Docs](https://greenbone.github.io/)
+- [Metasploit Unleashed](https://www.offensive-security.com/metasploit-unleashed/)
+- [Metasploitable2 Download](https://sourceforge.net/projects/metasploitable/)
+- [Nmap Guide](https://nmap.org/book/)
+
+---
+
+> ⚠️ For educational purposes only. Always hack in legal environments.
